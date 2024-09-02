@@ -1,0 +1,344 @@
+[
+    {
+        "id": "30fc550b56d37eba",
+        "type": "mqtt out",
+        "z": "98b3058668b4a7bc",
+        "name": "MQTT Out",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "",
+        "x": 310,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "0eac537e5501f554",
+        "type": "comment",
+        "z": "98b3058668b4a7bc",
+        "name": "Smart Sensors or patient side ESP",
+        "info": "sensors present with availability of\na microcontroller.",
+        "x": 220,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "45196bb85d8e9a4d",
+        "type": "comment",
+        "z": "98b3058668b4a7bc",
+        "name": "RPi Broker",
+        "info": "with gateway, an rpi will act as a broker. ",
+        "x": 740,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "2ea5e0220a7272b2",
+        "type": "mongodb in",
+        "z": "98b3058668b4a7bc",
+        "name": "",
+        "collection": "",
+        "operation": "find",
+        "x": 660,
+        "y": 180,
+        "wires": [
+            [
+                "71f67713ed015b67",
+                "4f3a60ff80fd587d"
+            ]
+        ]
+    },
+    {
+        "id": "bc5770a7fe946caf",
+        "type": "comment",
+        "z": "98b3058668b4a7bc",
+        "name": "Data proceessing and storage",
+        "info": "HEALTH DATA: BPM, Pulse, Sugar, Oxygen.\nTOUCH DATA: medicine taken or not",
+        "x": 740,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "71f67713ed015b67",
+        "type": "function",
+        "z": "98b3058668b4a7bc",
+        "name": "med-check",
+        "func": "//if meds not taken in two days, send trigger.\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 830,
+        "y": 180,
+        "wires": [
+            [
+                "e1e041c9f5aa05ac"
+            ]
+        ]
+    },
+    {
+        "id": "e1e041c9f5aa05ac",
+        "type": "mqtt out",
+        "z": "98b3058668b4a7bc",
+        "name": "MQTT Out",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "",
+        "x": 1030,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "6a30c6adc2c31650",
+        "type": "mqtt in",
+        "z": "98b3058668b4a7bc",
+        "name": "MQTT In",
+        "topic": "",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 480,
+        "y": 260,
+        "wires": [
+            [
+                "2ea5e0220a7272b2",
+                "69401b186770a83a"
+            ]
+        ]
+    },
+    {
+        "id": "3403d9014ad76250",
+        "type": "comment",
+        "z": "98b3058668b4a7bc",
+        "name": "/home1/meds",
+        "info": "",
+        "x": 310,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "bd8f5153c614189c",
+        "type": "comment",
+        "z": "98b3058668b4a7bc",
+        "name": "/home1/meds",
+        "info": "",
+        "x": 490,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "5a1e7bb1ed7223f2",
+        "type": "comment",
+        "z": "98b3058668b4a7bc",
+        "name": "/home1/medcheck",
+        "info": "",
+        "x": 1030,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "341c4830ad788e8e",
+        "type": "mqtt in",
+        "z": "98b3058668b4a7bc",
+        "name": "MQTT In",
+        "topic": "",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 1260,
+        "y": 260,
+        "wires": [
+            [
+                "9a220a7f993c6b9b",
+                "eccd14215e770837",
+                "954d42fd696c683c"
+            ]
+        ]
+    },
+    {
+        "id": "9a220a7f993c6b9b",
+        "type": "ui_audio",
+        "z": "98b3058668b4a7bc",
+        "name": "Alert message",
+        "group": "",
+        "voice": "",
+        "always": "",
+        "x": 1500,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "8afc27c7e2ab3f0e",
+        "type": "comment",
+        "z": "98b3058668b4a7bc",
+        "name": "/home1/medcheck",
+        "info": "",
+        "x": 1290,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "5b6cc2088bd1b03e",
+        "type": "comment",
+        "z": "98b3058668b4a7bc",
+        "name": "/home1/panic",
+        "info": "",
+        "x": 310,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "b73dc4fbf72ef71d",
+        "type": "comment",
+        "z": "98b3058668b4a7bc",
+        "name": "/home1/panic",
+        "info": "",
+        "x": 490,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "69401b186770a83a",
+        "type": "function",
+        "z": "98b3058668b4a7bc",
+        "name": "panic?",
+        "func": "//check if button is pressed for 5 seconds continuously\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 730,
+        "y": 340,
+        "wires": [
+            [
+                "e1e041c9f5aa05ac"
+            ]
+        ]
+    },
+    {
+        "id": "530389b1e6d05ed3",
+        "type": "comment",
+        "z": "98b3058668b4a7bc",
+        "name": "/home1/panic-chk",
+        "info": "",
+        "x": 1030,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "992e220b7d84cc8e",
+        "type": "comment",
+        "z": "98b3058668b4a7bc",
+        "name": "/home1/panic-chk",
+        "info": "",
+        "x": 1290,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "eccd14215e770837",
+        "type": "rpi-gpio out",
+        "z": "98b3058668b4a7bc",
+        "name": "Buzzer",
+        "pin": "5",
+        "set": "",
+        "level": "0",
+        "freq": "",
+        "out": "out",
+        "bcm": true,
+        "x": 1480,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "e8f3eba6b758ce33",
+        "type": "comment",
+        "z": "98b3058668b4a7bc",
+        "name": "Son/Daughter",
+        "info": "Another esp client",
+        "x": 1370,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "22e8e792f93f0939",
+        "type": "rpi-gpio in",
+        "z": "98b3058668b4a7bc",
+        "name": "Touch",
+        "pin": "",
+        "intype": "tri",
+        "debounce": "25",
+        "read": false,
+        "bcm": true,
+        "x": 130,
+        "y": 220,
+        "wires": [
+            [
+                "30fc550b56d37eba"
+            ]
+        ]
+    },
+    {
+        "id": "62d1c2927e2b3a83",
+        "type": "rpi-gpio in",
+        "z": "98b3058668b4a7bc",
+        "name": "Panic Button",
+        "pin": "",
+        "intype": "tri",
+        "debounce": "25",
+        "read": false,
+        "bcm": true,
+        "x": 110,
+        "y": 300,
+        "wires": [
+            [
+                "30fc550b56d37eba"
+            ]
+        ]
+    },
+    {
+        "id": "4f3a60ff80fd587d",
+        "type": "http response",
+        "z": "98b3058668b4a7bc",
+        "name": "Display all patient details",
+        "statusCode": "",
+        "headers": {},
+        "x": 870,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "954d42fd696c683c",
+        "type": "http response",
+        "z": "98b3058668b4a7bc",
+        "name": "Patient Details",
+        "statusCode": "",
+        "headers": {},
+        "x": 1500,
+        "y": 260,
+        "wires": []
+    }
+]
